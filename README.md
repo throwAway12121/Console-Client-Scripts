@@ -37,20 +37,20 @@ class Inviter : ChatBot
     {
         string textv = GetVerbatim(text); //GetVerbatim() is a method from the API that removes color coding from a given string
 //EDIT 2---------------------------------------------------------
-        
-	if (stopChecking == false) {
-	          if (textv.Contains("/shutdown")) {
-                if (textv.Contains("/confirm")) {
+//Note- If picks these up if you are messaged them
+	if (stopInviting == false) {
+	          if (textv.Contains("shutdown]")) {
+                if (textv.Contains("confirm]")) {
 	                  SendText("/nickname &1J&2a&3k&4e");
-                    bool stopChecking = true;
+                    stopInviting = true;
 	                  LogToConsole("Stopped!");
                 }
 	          }
-        } else if (textv.Contains("/startup")) {
-            if (textv.Contains("/startconfirm")) {
+        } else if (textv.Contains("startup]")) {
+            if (textv.Contains("startconfirm]")) {
 	              SendText("/nickname &1J&2a&3k&4e&0BOT");
-                bool stopChecking = false;
-                SendText("/tc I am afk, please do not message me.");
+                      stopInviting = false;
+                      SendText("/tc I am afk, please do not message me.");
 	              SendText("/afk");
 	              LogToConsole("Started!");
             }
@@ -70,7 +70,7 @@ class Inviter : ChatBot
  
     public override void Update() //Another overrided method from the API, basically gets called constantly
     {
-        if (stopChecking == false) {
+        if (stopInviting == false) {
             if (checkCount > 200) {
                 checkCount = 0;
                 for (int i = 0; i < players.Count; i++) { //Looping through all players added to array...
