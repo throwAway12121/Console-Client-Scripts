@@ -22,15 +22,13 @@ class Inviter : ChatBot
     
     public override void Initialize()
     {
-        LogToConsole("Sucessfully Initialized!");
-	      LogToConsole("Connecting To Towny...");	
+	      LogToConsole("Starting...");	
 	      SendText("/towny");
 
 	      Thread.Sleep(3000);
 	      SendText("/nickname &1J&2a&3k&4e&0BOT");
-	      SendText("/tc I am afk, please do not message me.");
-	      SendText("/afk");
-	      LogToConsole("Finished!");
+	      //SendText("/tc I am afk, please do not message me.");
+	      //SendText("/afk");
     }
 
     public override void GetText(string text) //This is an overrided method, meaning it writes over the existing GetText() method from the client's API
@@ -39,21 +37,23 @@ class Inviter : ChatBot
 //EDIT 2---------------------------------------------------------
 //Note- If picks these up if you are messaged them
 	if (stopInviting == false) {
-	          if (textv.Contains("] shutdown")) {
-                if (textv.Contains("] confirm")) {
+	          if (textv.Contains("shutdown")) {
+                if (textv.Contains("confirm")) {
 	                  SendText("/nickname &1J&2a&3k&4e");
                     stopInviting = true;
 	                  LogToConsole("Stopped!");
                 }
 	          }
-        } else if (textv.Contains("] startup")) {
-            if (textv.Contains("] startconfirm")) {
-	              SendText("/nickname &1J&2a&3k&4e&0BOT");
-                      stopInviting = false;
-                      SendText("/tc I am afk, please do not message me.");
-	              SendText("/afk");
-	              LogToConsole("Started!");
-            }
+        } 
+	//Temporarily removing this, needs a bit of work, doesn't pick up the msg
+	//else if (textv.Contains("startup")) {
+          //  if (textv.Contains("startconfirm")) {
+	    //          SendText("/nickname &1J&2a&3k&4e&0BOT");
+              //        stopInviting = false;
+                //      SendText("/tc I am afk, please do not message me.");
+	          //    SendText("/afk");
+	            //  LogToConsole("Started!");
+            //}
 	      }
 	      if (stopInviting == false) {
             if (textv.Contains("Welcome to Imperial Towny") && !textv.Contains("»")) {
