@@ -19,6 +19,7 @@ class Inviter : ChatBot
         LogToConsole("Looking for new players...");
     }
 //EDIT 1---------------------------------------------------------
+    
     public override void Initialize()
     {
         LogToConsole("Sucessfully Initialized!");
