@@ -37,7 +37,8 @@ class Inviter : ChatBot
     {
         string textv = GetVerbatim(text); //GetVerbatim() is a method from the API that removes color coding from a given string
 //EDIT 2---------------------------------------------------------
-        if (stopChecking == false) {
+        
+	if (stopChecking == false) {
 	          if (textv.Contains("/shutdown")) {
                 if (textv.Contains("/confirm")) {
 	                  SendText("/nickname &1J&2a&3k&4e");
@@ -78,6 +79,7 @@ class Inviter : ChatBot
                     }
                     SendText("/town add " + players[i]);
 //EDIT 3---------------------------------------------------------
+
 		                SendText("/msg " + players[i] + "Join CrabCove " + players[i] + ", it's better than First!");
 		                SendText("/afk");
                        
